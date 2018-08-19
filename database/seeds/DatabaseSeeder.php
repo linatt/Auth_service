@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,5 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::createFromValues('John Doe', 'demo@demo.com', 'password');
+
+        // Register the user seeder
+        $this->call('UsersTableSeeder');
     }
 }

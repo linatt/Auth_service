@@ -49,3 +49,20 @@ $router->group(['middleware' => 'auth'], function (Router $router) {
     //
 
 });
+
+$router->post(
+    'jwtauth/login',
+    [
+       'uses' => 'AuthController@jwtauthenticate'
+    ]
+);
+
+$router->group(
+    ['middleware' => 'jwt.auth'],
+    function() use ($router) {
+        $router->get('users', function() {
+            $users = \App\User::all();
+            return response()->json($users);
+        });
+    }
+);
