@@ -66,3 +66,5 @@ $router->group(
         });
     }
 );
+
+$router->post('/requestservicelocation', 'RequestController@sendRequestToRegistry');
