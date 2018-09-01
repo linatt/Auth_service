@@ -18,6 +18,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\ExpiredException;
 use Illuminate\Support\Facades\Hash;
 use Validator;
+use Illuminate\Http\RedirectResponse;
 
 
 /**
@@ -166,6 +167,8 @@ class AuthController extends Controller
     ]);
     // Find the user by email
     $user = User::where('email', $this->request->input('email'))->first();
+    $url = 'http://gateway.homestead/home?token=';
+    $token = $this->jwt($user);
     if (!$user) {
       // You wil probably have some sort of helpers or whatever
       // to make sure that you have the same response format for
@@ -177,7 +180,9 @@ class AuthController extends Controller
     }
     // Verify the password and generate the token
     if (Hash::check($this->request->input('password'), $user->password)) {
-      return view('sender', ['token' => $this->jwt($user)]);
+    //  return view('sender', ['token' => $this->jwt($user)]);
+    return redirect($url. $token);
+
 
     /*  response()->json([
         'token' => $this->jwt($user)
