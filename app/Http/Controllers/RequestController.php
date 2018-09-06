@@ -25,7 +25,7 @@ class RequestController extends BaseController
 
   $client = new Client(array( 'curl' => array( CURLOPT_SSL_VERIFYPEER => false))); //GuzzleHttp\Client
 
-  $serviceLocation = $client->get('http://registrydb.homestead/api/services/' . $requestedService)->getBody()->read(256);
+  $serviceLocation = $client->get('https://registrydb.homestead/api/services/' . $requestedService)->getBody()->read(256);
   $result = $client->post('https://' . $serviceLocation . '/api/toB', ['json' => ['token' => $token]])->getBody()->read(128);
   return array($result);
 }

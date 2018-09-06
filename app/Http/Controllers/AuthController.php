@@ -59,10 +59,11 @@ class AuthController extends Controller
   */
   public function login(LoginRequest $request)
   {
+    //PASETO
     $credentials = $request->only('email', 'password');
 
     $token = Auth::attempt($credentials);
-    $url = 'http://gateway.homestead/home?paseto_token=';
+    $url = 'https://gateway.homestead/home?paseto_token=';
 
     if (!$token) {
       return response()->json([
@@ -169,7 +170,7 @@ class AuthController extends Controller
     ]);
     // Find the user by email
     $user = User::where('email', $this->request->input('email'))->first();
-    $url = 'http://gateway.homestead/home?token=';
+    $url = 'https://gateway.homestead/home?token=';
     $token = $this->jwt($user);
     if (!$user) {
       // You wil probably have some sort of helpers or whatever
