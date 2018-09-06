@@ -39,14 +39,16 @@ $router->group(['prefix' => 'auth', 'as' => 'auth'], function (Router $router) {
     $router->get('/user', [
         'uses' => 'AuthController@getUser',
         'as' => 'user',
-        'middleware' => 'auth'
+       'middleware' => 'auth'
     ]);
 });
 
 /* Protected Routes */
 $router->group(['middleware' => 'auth'], function (Router $router) {
 
-    //
+    $router->post('test', function (){
+      return ('Hello world!');
+    });
 
 });
 

@@ -73,10 +73,12 @@ $app->middleware([
     \App\Http\Middleware\CorsMiddleware::class
 ]);
 
+// PASETO-Middleware
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
 
+// JWT-Middleware
 $app->routeMiddleware([
     'jwt.auth' => App\Http\Middleware\JwtMiddleware::class,
 ]);

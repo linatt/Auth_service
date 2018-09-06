@@ -62,6 +62,7 @@ class AuthController extends Controller
     $credentials = $request->only('email', 'password');
 
     $token = Auth::attempt($credentials);
+    $url = 'http://gateway.homestead/home?paseto_token=';
 
     if (!$token) {
       return response()->json([
@@ -69,7 +70,8 @@ class AuthController extends Controller
       ], 401);
     }
 
-    return response()->json(['user' => Auth::user(), 'token' => $token]);
+  //  return response()->json(['user' => Auth::user(), 'token' => $token]);
+    return redirect($url. $token);
   }
 
   /**
@@ -180,17 +182,18 @@ class AuthController extends Controller
     }
     // Verify the password and generate the token
     if (Hash::check($this->request->input('password'), $user->password)) {
-    //  return view('sender', ['token' => $this->jwt($user)]);
-    return redirect($url. $token);
+      //  return view('sender', ['token' => $this->jwt($user)]);
+      return redirect($url. $token);
 
 
-    /*  response()->json([
-        'token' => $this->jwt($user)
-      ], 200) ; */
-    }
-    // Bad Request response
-    return response()->json([
-      'error' => 'Email or password is wrong.'
-    ], 400);
+      /*  response()->json([
+      'token' => $this->jwt($user)
+    ], 200) ; */
   }
+  // Bad Request response
+  return response()->json([
+    'error' => 'Email or password is wrong.'
+  ], 400);
+}
+
 }

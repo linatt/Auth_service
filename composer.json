@@ -21,11 +21,11 @@
     "pearl/lumen-request-validate": "^1.0",
     "illuminate/mail": "^5.6",
     "firebase/php-jwt": "^5.0",
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "^6.3",
+    "phpunit/phpunit": "^7.3"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
-    "phpunit/phpunit": "~7.0",
     "mockery/mockery": "~1.0",
     "barryvdh/laravel-ide-helper": "^2.4",
     "nunomaduro/collision": "^2.0",
