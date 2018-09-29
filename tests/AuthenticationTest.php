@@ -41,7 +41,7 @@ class AuthenticationTest extends TestCase
             'password' => $this->testPassword
         ]);
 
-        $this->assertResponseOk();
+        $this->assertResponseStatus(302);
     }
 
     public function test_protected_route_with_authenticated_user()
